@@ -1,11 +1,4 @@
-import {
-    Button,
-    Card,
-    CardContent,
-    CardMedia,
-    Grid,
-    Typography,
-} from "@mui/material";
+import { Button, Card, CardMedia, Grid, Typography } from "@mui/material";
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -14,7 +7,6 @@ function Contain() {
     const location = useLocation();
 
     const data = location.state;
-    console.log(data);
     return (
         <>
             <Grid container xs={12}>
@@ -55,30 +47,34 @@ function Contain() {
                     </Grid>
                     <Grid item xs={12} sm={12} style={{ textAlign: "start" }}>
                         <Typography gutterBottom variant="h5" component="h2">
-                            Website title : {data.title}
+                            <b>Website title : </b> {data.title}
                         </Typography>
                         <Typography color="textSecondary" component="p">
-                            Description : {data.description}
+                            <b>Description : </b> {data.description}
                         </Typography>
                         <Typography color="textSecondary" component="p">
-                            Author: {data.author}
+                            <b>Author:</b> {data.author}
                         </Typography>
                         <Typography
                             variant="body2"
                             color="textSecondary"
                             component="p"
                         >
-                            Type: {data.type}
+                            <b> Type:</b> {data.type}
                         </Typography>
                         <Typography color="textSecondary" component="p">
-                            URL: {data.canonicalUrl}
+                            <b> URL:</b> {data.canonicalUrl}
                         </Typography>
                         <Typography color="textSecondary" component="p">
-                            Locale: {data.locale}
+                            <b> Locale: </b> {data.locale}
                         </Typography>
-                        <Typography color="textSecondary" component="p">
-                            Published Date: {data.publishedDate}
-                        </Typography>
+                        {data?.publishedDate !== "undifined" ? (
+                            <Typography color="textSecondary" component="p">
+                                <b> Published Date: </b> {data.publishedDate}
+                            </Typography>
+                        ) : (
+                            ""
+                        )}
                     </Grid>
                 </Card>
             </Grid>

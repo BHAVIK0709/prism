@@ -35,6 +35,7 @@ const UrlScraper = () => {
             setIsLoading(false);
             return;
         }
+        //Bind Check SafeBrowsing Api
         safebrowsing(url).then((res) => {
             if (res.data.matches?.length) {
                 setIsLoading(false);
@@ -46,6 +47,7 @@ const UrlScraper = () => {
         });
 
         try {
+            // Bind Scraping api
             const response = await scrapingbee(url);
             const $ = cheerio.load(response.data);
 
@@ -81,7 +83,7 @@ const UrlScraper = () => {
             setIsLoading(false);
             navigate("/content", { state: Data });
         }
-    }, [Data]);
+    }, [Data, navigate]);
     return (
         <>
             <Grid
@@ -104,50 +106,58 @@ const UrlScraper = () => {
                             </Typography>
                         </Toolbar>
                     </AppBar>
-                    <Card
-                        sx={{
-                            maxWidth: "80%",
-                            margin: "100px",
-                            padding: "200px",
-                            border: "1px solid green",
-                        }}
-                    >
-                        <div>
-                            <TextField
-                                id="outlined-basic"
-                                label="Enter url"
-                                variant="outlined"
-                                value={url}
-                                onChange={handleUrlChange}
-                                //size="medium"
-                                margin="normal"
-                                fullWidth
-                                inputProps={{
-                                    style: {
-                                        width: "100%",
-                                    },
-                                }}
-                            />
-                            <Grid>
-                                {isLoading ? (
-                                    <CircularProgress />
-                                ) : (
-                                    <Button
-                                        style={{ margin: "auto" }}
-                                        variant="contained"
-                                        onClick={handleButtonClick}
-                                    >
-                                        Submit
-                                    </Button>
-                                )}
-                                {errorMessage && (
-                                    <div style={{ color: "red" }}>
-                                        {errorMessage}
-                                    </div>
-                                )}
+                    <Grid item xs={12}>
+                        <Card
+                            xs={12}
+                            sx={{
+                                margin: "auto",
+                                mt: "40%",
+                                padding: "100px",
+                                maxWidth: "80%",
+                                borderRadius: 2,
+                                textAlign: "center",
+                                fontSize: "0.875rem",
+                                fontWeight: "700",
+                            }}
+                        >
+                            <Grid container>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        id="outlined-basic"
+                                        label="Enter url"
+                                        variant="outlined"
+                                        value={url}
+                                        onChange={handleUrlChange}
+                                        margin="normal"
+                                        fullWidth
+                                        inputProps={{
+                                            style: {
+                                                width: "100%",
+                                            },
+                                        }}
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    {isLoading ? (
+                                        <CircularProgress />
+                                    ) : (
+                                        <Button
+                                            style={{ margin: "auto" }}
+                                            variant="contained"
+                                            onClick={handleButtonClick}
+                                        >
+                                            Submit
+                                        </Button>
+                                    )}
+                                    {errorMessage && (
+                                        <div style={{ color: "red" }}>
+                                            {errorMessage}
+                                        </div>
+                                    )}
+                                </Grid>
                             </Grid>
-                        </div>
-                    </Card>
+                        </Card>
+                    </Grid>
                 </Grid>
             </Grid>
         </>

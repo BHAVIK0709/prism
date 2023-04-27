@@ -1,5 +1,4 @@
 import axios from "axios";
-import React from "react";
 
 function Api() {
     const safebrowsing = async (url) => {
@@ -26,6 +25,7 @@ function Api() {
             console.log(error);
         }
     };
+
     const scrapingbee = async (url) => {
         try {
             const response = await axios.get(
