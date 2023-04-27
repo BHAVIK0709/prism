@@ -129,6 +129,9 @@ const UrlScraper = () => {
                                         value={url}
                                         onChange={handleUrlChange}
                                         margin="normal"
+                                        error={
+                                            errorMessage !== "" ? true : false
+                                        }
                                         fullWidth
                                         inputProps={{
                                             style: {
